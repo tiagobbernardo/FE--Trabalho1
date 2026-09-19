@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def simular_boltzmann(energia_media, N=200, k=6, Nc=10000):
+def simular_boltzmann(energia_media, N, k, Nc):
     """
     Simula o sistema de N dados para uma dada energia média e 
     devolve a distribuição de probabilidades.
