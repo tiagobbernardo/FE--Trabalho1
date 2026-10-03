@@ -31,6 +31,25 @@ def calcular_beta(energias: np.ndarray, probabilidades: np.ndarray) -> float:
     declive, _ = np.polyfit(x, y, 1)
     return -declive
 
+def calcular_beta_teorico(energia_alvo: float, faces: int) -> float:
+    """Calcula o beta teórico resolvendo numericamente a equação da energia média (Método da Bisseção)."""
+    def energia_esperada(b):
+        e = np.arange(1, faces + 1)
+        probs = np.exp(-b * e)
+        return np.sum(e * probs) / np.sum(probs)
+    
+    # Procura do zero da função: energia_esperada(beta) - energia_alvo = 0
+    lim_inf, lim_sup = -10.0, 10.0
+    for _ in range(100):
+        meio = (lim_inf + lim_sup) / 2
+        if energia_esperada(meio) > energia_alvo:
+            # Se a energia esperada for maior que o alvo, precisamos de arrefecer o sistema (aumentar beta)
+            lim_inf = meio
+        else:
+            # Se for menor, precisamos de aquecer o sistema (diminuir beta)
+            lim_sup = meio
+            
+    return meio
 def gerar_graficos(resultados: dict, energias: np.ndarray, config_estilos: dict):
     """Gera e exporta os gráficos individuais e a sobreposição global."""
     
@@ -86,7 +105,7 @@ def gerar_graficos(resultados: dict, energias: np.ndarray, config_estilos: dict)
     plt.close(fig_sobre)
 
 def main():
-    N = 4
+    N = 200
     K = 6
     NC = 10000
     ENERGIAS_MEDIAS = [2, 3, 4, 5]
@@ -108,9 +127,11 @@ def main():
     gerar_graficos(resultados, energias, estilos)
 
     print("\n--- Resultados Analíticos (Parâmetro Beta) ---")
+    print(f"{'Energia Média':^15} | {'Beta Numérico':^15} | {'Beta Teórico':^15}")
     for e_med, probs in resultados.items():
-        beta = calcular_beta(energias, probs)
-        print(f"Energia Média = {e_med}  ->  Beta = {beta:.4f}")
+        beta_num = calcular_beta(energias, probs)
+        beta_teo = calcular_beta_teorico(e_med, K)
+        print(f"{e_med:<15} | {beta_num:<15.4f} | {beta_teo:<15.4f}")
 
 if __name__ == "__main__":
     main()
