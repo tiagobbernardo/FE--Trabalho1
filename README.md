@@ -12,7 +12,7 @@ O objetivo principal é calcular numericamente a distribuição de probabilidade
 ## ⚙️️ O Algoritmo e Validação
 O modelo numérico utiliza uma amostragem baseada no método de Monte Carlo com as seguintes regras fundamentais:
 1. **Inicialização:** A energia total do sistema é fixada atribuindo o valor da energia média desejada a todos os $N$ dados simultaneamente.
-2. **Evolução (Balanço Energético):** Em cada passo, dois dados são selecionados aleatoriamente. As suas energias são alteradas através da definição de limites rígidos ($\max(1, s-k)$ e $\min(k, s-1)$), garantindo que a soma de ambos ($s$) e a energia total do sistema permanecem inalteradas.
+2. **Evolução (Balanço Energético):** Em cada passo, dois dados são selecionados aleatoriamente. As suas energias são alteradas através da definição de limites rígidos (`max(1, s-k)` e `min(k, s-1)`), garantindo que a soma de ambos ($s$) e a energia total do sistema permanecem inalteradas.
 3. **Descorrelação:** O passo de perturbação anterior é repetido $N$ vezes iterativas (uma varredura completa) para garantir que a nova configuração gerada seja suficientemente descorrelacionada e válida como amostra estatística independente para a recolha de dados.
 
 Para efeitos de validação rigorosa, o script resolve também numericamente (via método da bisseção) a relação termodinâmica $\bar{\epsilon}=-\frac{\partial\ln Z}{\partial\beta}$ para apurar o **parâmetro $\beta$ teórico** correspondente a cada energia média.
