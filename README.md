@@ -3,7 +3,7 @@
 ## 📖 Sobre o Projeto
 Este repositório contém o programa computacional desenvolvido para o 1º Trabalho da unidade curricular de **Física Estatística** (3º ano, 5º semestre) da Licenciatura em Engenharia Física Aplicada no **Instituto Superior de Engenharia de Lisboa (ISEL)**. 
 
-O objetivo principal é calcular numericamente a distribuição de probabilidades do número obtido por cada dado num sistema com $N$ dados e energia total constante, focando a simulação para as energias médias $\bar{\epsilon} \in \{2, 3, 4, 5\}$. Os resultados demonstram, através de um algoritmo numérico simples, que a função de probabilidade do sistema converge para a **Distribuição de Boltzmann** no limite termodinâmico.
+O objetivo principal é calcular numericamente a distribuição de probabilidades do número obtido por cada dado num sistema com $N$ dados, focando a simulação para as energias médias $\bar{\epsilon} \in \{2, 3, 4, 5\}$. Os resultados demonstram, através de um algoritmo numérico simples, que a função de probabilidade do sistema converge para a **Distribuição de Boltzmann** no limite termodinâmico.
 
 **Autores:**
 * Tiago Bernardo (53117)
